@@ -60,10 +60,10 @@ namespace UoH
         {
             // replace spaces with nothing
             while (text.IndexOf(" ") != -1)
-                text.Replace(" ", "");
+                text = text.Replace(" ", "");
 
             // removing 0x for hexa numbers
-            text.Replace("0x", "");
+            text = text.Replace("0x", "");
 
             // return sanitized string
             return text;
