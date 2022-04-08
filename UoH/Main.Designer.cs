@@ -79,6 +79,7 @@
             this.rangeTextBox.Size = new System.Drawing.Size(100, 20);
             this.rangeTextBox.TabIndex = 13;
             this.rangeTextBox.Text = "1000";
+            this.rangeTextBox.TextChanged += new System.EventHandler(this.sourceAddressTextBox_TextChanged);
             // 
             // plusAddressTextBox
             // 
