@@ -23,26 +23,30 @@ namespace UoH
         // function initiated when text of the main address is being changed
         private void sourceAddressTextBox_TextChanged(object sender, EventArgs e)
         {
-            // range in long variable that will be added/removed from source address
-            long range = 0;
-
-            // source address in long variable that below will add/remove range to
-            long sourceAddress = 0;
-
-            // parse sanitized range string to "long" number +
-            // parse sanitiez source address to "long" number
-            if (long.TryParse(sanitizeString(rangeTextBox.Text), NumberStyles.HexNumber, CultureInfo.CurrentCulture, out range) &&
-            (long.TryParse(sanitizeString(sourceAddressTextBox.Text), NumberStyles.HexNumber, CultureInfo.CurrentCulture, out sourceAddress)))
+            // excluding calculatiojns and error dispaly if source address not yet filled out
+            if (sourceAddressTextBox.Text != "")
             {
-                // add range, convert to hex and display
-                minusAddressTextBox.Text = (sourceAddress - range).ToString("X");
-                plusAddressTextBox.Text = (sourceAddress + range).ToString("X");
+                // range in long variable that will be added/removed from source address
+                long range = 0;
 
-                // changing error indicator to success
-                errorIndicator.BackColor = Color.LimeGreen;
+                // source address in long variable that below will add/remove range to
+                long sourceAddress = 0;
+
+                // parse sanitized range string to "long" number +
+                // parse sanitiez source address to "long" number
+                if (long.TryParse(sanitizeString(rangeTextBox.Text), NumberStyles.HexNumber, CultureInfo.CurrentCulture, out range) &&
+                (long.TryParse(sanitizeString(sourceAddressTextBox.Text), NumberStyles.HexNumber, CultureInfo.CurrentCulture, out sourceAddress)))
+                {
+                    // add range, convert to hex and display
+                    minusAddressTextBox.Text = (sourceAddress - range).ToString("X");
+                    plusAddressTextBox.Text = (sourceAddress + range).ToString("X");
+
+                    // changing error indicator to success
+                    errorIndicator.BackColor = Color.LimeGreen;
+                }
+                // changing error indicator to error
+                else errorIndicator.BackColor = Color.Red;
             }
-            // changing error indicator to error
-            else errorIndicator.BackColor = Color.Red;
         }
 
         // select all text on clicked textbox
